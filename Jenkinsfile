@@ -7,7 +7,7 @@ pipeline {
             steps {
                 container('podman') {
                     script {
-                        sh 'podman run hello-world'
+                        sh 'podman build -t docker.io/maxigoge/web-go -f Dockerfile'
                     }
                 }
                 container('kubectl') {
