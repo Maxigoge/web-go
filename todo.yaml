@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: berton
+  name: maxon
 
 ---
 
@@ -9,7 +9,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: containergo-conf
-  namespace: berton
+  namespace: maxon
 data:
   FOO: "hola "
   BAR: "mundo"
@@ -20,7 +20,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: containergo-secrets
-  namespace: berton
+  namespace: maxon
 type: Opaque
 data:
   SUPERSECRETUSER: ZWxvbg==
@@ -32,7 +32,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: containergo
-  namespace: berton
+  namespace: maxon
 spec:
   replicas: 2
   selector:
@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
       - name: containergo
-        image: docker.io/bertontheone/container_go
+        image: docker.io/maxontheone/container_go
         ports:
         - containerPort: 8080
         env:
@@ -76,7 +76,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: containergo-service
-  namespace: berton
+  namespace: maxon
 spec:
   type: ClusterIP
   selector:
@@ -94,7 +94,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: containergo-ingress
-  namespace: berton
+  namespace: maxon
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
