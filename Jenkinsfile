@@ -12,18 +12,18 @@ pipeline {
                     script {
                         sh 'podman build -t docker.io/maxigoge/web-go:$BUILD_NUMBER -f Dockerfile'
                         sh 'podman login docker.io -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
+                        sh 'docker tag docker.io/maxigoge/web-go:$BUILD_NUMBER docker.io/maxigoge/web-go:latest'
                         sh 'podman push docker.io/maxigoge/web-go:$BUILD_NUMBER'
+                        sh 'podman push docker.io/maxigoge/web-go:latest'
                     }
                 }
+            }
+        }
+        stage('Deploy') {
+            steps {
                 container('kubectl') {
                     script {
-                        sh 'env'
-                        sh 'kubectl get pod'
-                    }
-                }
-                container('fortune') {
-                    script {
-                        sh 'fortune'
+                        sh 'kubectl apply -f manifest.yaml'
                     }
                 }
             }
