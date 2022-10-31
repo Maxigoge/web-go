@@ -26,7 +26,7 @@ pipeline {
         
         stage('Build') {
             when {
-                branch 'develop'
+                branch 'main'
             }
             steps {
                 container('podman') {
