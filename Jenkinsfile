@@ -7,6 +7,9 @@ pipeline {
 
     stages {
         stage('Build') {
+            when {
+                branch 'develop'
+            }
             steps {
                 container('podman') {
                     script {
@@ -20,6 +23,9 @@ pipeline {
             }
         }
         stage('Deploy') {
+            when {
+                branch 'main'
+            }
             steps {
                 container('kubectl') {
                     script {
