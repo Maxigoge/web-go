@@ -29,7 +29,7 @@ pipeline {
             steps {
                 container('kubectl') {
                     script {
-                        sh 'kubectl apply -f manifest.yaml'
+                        sh 'kubectl apply -f todo.yaml'
                         sh 'kubectl rollout restart deployment -n maxigoge web-go'
                         sh 'kubectl rollout status deployment -n maxigoge web-go'
                     }
