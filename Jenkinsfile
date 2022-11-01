@@ -2,7 +2,7 @@ pipeline {
     agent { label 'tuto' }
     
     environment {
-        DOCKERHUB_CREDS = credentials('maxikey')
+        DOCKERHUB_CREDS = credentials('webo-credentials')
     }
 
     stages {
