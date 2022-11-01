@@ -15,7 +15,7 @@ pipeline {
                 container('podman') {
                     script {
                         sh 'podman build -t docker.io/maxigoge/web-go:$BUILD_NUMBER -f Dockerfile'
-                        sh 'podman tag docker.io/maxigoge/web-go:$BUILD_NUMBER docker.io/maxibadaro/web-go:dev'
+                        sh 'podman tag docker.io/maxigoge/web-go:$BUILD_NUMBER docker.io/maxigoge/web-go:dev'
                         sh 'podman login docker.io -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
                         sh 'podman push docker.io/maxigoge/web-go:$BUILD_NUMBER'
                         sh 'podman push docker.io/maxigoge/web-go:dev'
